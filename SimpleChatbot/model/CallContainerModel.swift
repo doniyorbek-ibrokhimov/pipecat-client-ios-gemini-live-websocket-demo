@@ -72,6 +72,8 @@ class CallContainerModel: ObservableObject {
                 )
             ])
         )
+        
+        
         self.rtviClientIOS = RTVIClient.init(
             transport: GeminiLiveWebSocketTransport.init(options: rtviClientOptions),
             options: rtviClientOptions
@@ -116,6 +118,15 @@ class CallContainerModel: ObservableObject {
             switch result {
             case .success():
                 self.isMicEnabled = self.rtviClientIOS?.isMicEnabled ?? false
+            case .failure(let error):
+                self.showError(message: error.localizedDescription)
+            }
+        }
+        
+        self.rtviClientIOS?.enableCam(enable: true) { result in
+            switch result {
+            case .success():
+                print("Camera enabled")
             case .failure(let error):
                 self.showError(message: error.localizedDescription)
             }
