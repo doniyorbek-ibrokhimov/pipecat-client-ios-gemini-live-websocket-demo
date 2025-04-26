@@ -24,6 +24,8 @@
 		90ABB9A32C74E1CE000D9CC7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ABB9A22C74E1CE000D9CC7 /* SettingsView.swift */; };
 		90ABB9A62C74EA8A000D9CC7 /* SettingsPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ABB9A52C74EA8A000D9CC7 /* SettingsPreference.swift */; };
 		90ABB9A82C74EAB1000D9CC7 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ABB9A72C74EAB1000D9CC7 /* SettingsManager.swift */; };
+		CC0A56D12DBD5B5900C9110C /* PipecatClientIOS in Frameworks */ = {isa = PBXBuildFile; productRef = CC0A56D02DBD5B5900C9110C /* PipecatClientIOS */; };
+		CC0A56D42DBD5B6100C9110C /* PipecatClientIOSGeminiLiveWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = CC0A56D32DBD5B6100C9110C /* PipecatClientIOSGeminiLiveWebSocket */; };
 		CC1D618E2DBD3D5F00A82157 /* PipecatClientIOS in Frameworks */ = {isa = PBXBuildFile; productRef = CC1D618D2DBD3D5F00A82157 /* PipecatClientIOS */; };
 		CC1D61912DBD3D8700A82157 /* PipecatClientIOSGeminiLiveWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = CC1D61902DBD3D8700A82157 /* PipecatClientIOSGeminiLiveWebSocket */; };
 		CC5BAC632DBC58DE00E9CF71 /* PipecatClientIOS in Frameworks */ = {isa = PBXBuildFile; productRef = CC5BAC622DBC58DE00E9CF71 /* PipecatClientIOS */; };
@@ -79,7 +81,9 @@
 				CC5BAC632DBC58DE00E9CF71 /* PipecatClientIOS in Frameworks */,
 				CC5BAC662DBC591C00E9CF71 /* PipecatClientIOSGeminiLiveWebSocket in Frameworks */,
 				CC1D618E2DBD3D5F00A82157 /* PipecatClientIOS in Frameworks */,
+				CC0A56D42DBD5B6100C9110C /* PipecatClientIOSGeminiLiveWebSocket in Frameworks */,
 				CC1D61912DBD3D8700A82157 /* PipecatClientIOSGeminiLiveWebSocket in Frameworks */,
+				CC0A56D12DBD5B5900C9110C /* PipecatClientIOS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +240,8 @@
 				CC5BAC652DBC591C00E9CF71 /* PipecatClientIOSGeminiLiveWebSocket */,
 				CC1D618D2DBD3D5F00A82157 /* PipecatClientIOS */,
 				CC1D61902DBD3D8700A82157 /* PipecatClientIOSGeminiLiveWebSocket */,
+				CC0A56D02DBD5B5900C9110C /* PipecatClientIOS */,
+				CC0A56D32DBD5B6100C9110C /* PipecatClientIOSGeminiLiveWebSocket */,
 			);
 			productName = SimpleChatbot;
 			productReference = 90031FA32C616EE700408370 /* SimpleChatbot.app */;
@@ -310,8 +316,8 @@
 			);
 			mainGroup = 90031F9A2C616EE700408370;
 			packageReferences = (
-				CC1D618C2DBD3D5F00A82157 /* XCLocalSwiftPackageReference "pipecat-client-ios" */,
-				CC1D618F2DBD3D8700A82157 /* XCLocalSwiftPackageReference "pipecat-client-ios-gemini-live-websocket" */,
+				CC0A56CF2DBD5B5900C9110C /* XCLocalSwiftPackageReference "pipecat-client-ios" */,
+				CC0A56D22DBD5B6100C9110C /* XCLocalSwiftPackageReference "pipecat-client-ios-gemini-live-websocket" */,
 			);
 			productRefGroup = 90031FA42C616EE700408370 /* Products */;
 			projectDirPath = "";
@@ -704,17 +710,25 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		CC1D618C2DBD3D5F00A82157 /* XCLocalSwiftPackageReference "pipecat-client-ios" */ = {
+		CC0A56CF2DBD5B5900C9110C /* XCLocalSwiftPackageReference "pipecat-client-ios" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = "pipecat-client-ios";
 		};
-		CC1D618F2DBD3D8700A82157 /* XCLocalSwiftPackageReference "pipecat-client-ios-gemini-live-websocket" */ = {
+		CC0A56D22DBD5B6100C9110C /* XCLocalSwiftPackageReference "pipecat-client-ios-gemini-live-websocket" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = "pipecat-client-ios-gemini-live-websocket";
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CC0A56D02DBD5B5900C9110C /* PipecatClientIOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PipecatClientIOS;
+		};
+		CC0A56D32DBD5B6100C9110C /* PipecatClientIOSGeminiLiveWebSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PipecatClientIOSGeminiLiveWebSocket;
+		};
 		CC1D618D2DBD3D5F00A82157 /* PipecatClientIOS */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PipecatClientIOS;
