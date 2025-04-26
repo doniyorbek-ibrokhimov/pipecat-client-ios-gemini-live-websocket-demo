@@ -1,0 +1,6 @@
+[submodule "pipecat-client-ios"]
+	path = pipecat-client-ios
+	url = https://github.com/doniyorbek-ibrokhimov/pipecat-client-ios.git
+[submodule "pipecat-client-ios-gemini-live-websocket"]
+	path = pipecat-client-ios-gemini-live-websocket
+	url = https://github.com/doniyorbek-ibrokhimov/pipecat-client-ios-gemini-live-websocket.git
