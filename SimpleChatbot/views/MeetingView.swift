@@ -73,9 +73,3 @@ struct MeetingView: View {
         .toast(message: model.toastMessage, isShowing: model.showToast)
     }
 }
-
-#Preview {
-    let mockModel = MockCallContainerModel()
-    let result = MeetingView().environmentObject(mockModel as CallContainerModel)
-    return result
-}

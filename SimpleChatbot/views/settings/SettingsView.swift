@@ -70,9 +70,3 @@ struct SettingsView: View {
         self.geminiAPIKey = savedSettings.geminiAPIKey
     }
 }
-
-#Preview {
-    let mockModel = MockCallContainerModel()
-    let result = SettingsView(showingSettings: .constant(true)).environmentObject(mockModel as CallContainerModel)
-    return result
-}

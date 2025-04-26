@@ -47,27 +47,12 @@ class CallContainerModel: ObservableObject {
         let currentSettings = SettingsManager.getSettings()
         let rtviClientOptions = RTVIClientOptions.init(
             enableMic: currentSettings.enableMic,
-            enableCam: true,
+            enableCam: false, //currentSettings.enableMic,
             params: .init(config: [
                 .init(
                     service: "llm",
                     options: [
-                        .init(name: "api_key", value: .string(geminiAPIKey)),
-                        .init(name: "initial_messages", value: .array([
-                            .object([
-                                "role": .string("user"), // "user" | "system"
-                                "content": .string("You are Chatbot, a friendly, helpful robot. Your goal is to demonstrate your capabilities in a succinct way. Your output will be converted to audio so don't include special characters in your answers. Respond to what the user said in a creative and helpful way, but keep your responses brief. Start by introducing yourself.")
-                            ])
-                        ])),
-                        .init(name: "generation_config", value: .object([
-                            "speech_config": .object([
-                                "voice_config": .object([
-                                    "prebuilt_voice_config": .object([
-                                        "voice_name": .string("Puck") // "Puck" | "Charon" | "Kore" | "Fenrir" | "Aoede"
-                                    ])
-                                ])
-                            ])
-                        ]))
+                        .init(name: "api_key", value: .string(geminiAPIKey))
                     ]
                 )
             ])
@@ -118,15 +103,6 @@ class CallContainerModel: ObservableObject {
             switch result {
             case .success():
                 self.isMicEnabled = self.rtviClientIOS?.isMicEnabled ?? false
-            case .failure(let error):
-                self.showError(message: error.localizedDescription)
-            }
-        }
-        
-        self.rtviClientIOS?.enableCam(enable: true) { result in
-            switch result {
-            case .success():
-                print("Camera enabled")
             case .failure(let error):
                 self.showError(message: error.localizedDescription)
             }

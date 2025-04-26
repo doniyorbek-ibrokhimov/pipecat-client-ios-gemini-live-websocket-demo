@@ -1,0 +1,307 @@
+# Essential iOS Development Rules for Windsurf
+
+## Critical Development Practices
+- Search entire codebase if needed for given task before proceeding to get codebase knowledge in order to avoid redeclaration
+- Build and run the project after making changes using this bash script: "", Fix any errors that may occur
+- Use latest Swift language features (Swift 5.9+) and SwiftUI capabilities (iOS 17+)
+- Get ObservableObjects from Environment not from parameters: `@EnvironmentObject var viewModel: HomeVM`
+
+## API Development
+- Create DTOs for API responses and make UI models from them:
+```swift
+struct DTO: Codable {
+    var id: Int
+    var name: String
+
+    var uiModel: UIModel { 
+        UIModel(id: id, 
+                name: name) 
+    }
+}
+
+struct UIModel {
+    var id: Int
+    var name: String
+}
+```
+- Pay attention for sample response to decide if a property is optional or not, if so, make it optional in DTO and UIModel as well
+- Use camelCase for variable names and CodingKeys in DTOs
+- Try to use Codable Enums for possible constant fields like gender, program, etc.:
+```swift
+enum Gender: String, Codable {
+    case male
+    case female
+}
+```
+
+- Create a service for each feature:
+```swift
+import HTTPClient
+
+class Service {
+
+    init() {
+        guard let token = AppCore.shared.token else { throw AppError.unauthorized }
+    }
+
+    func fetch() async throws -> [DTO] {
+        
+    }
+
+}
+
+fileprivate enum URLs {
+    static var simpleURL: URL { Constants.baseURL.appending(path: "path") }    
+    static func complexURL(_ param: String) -> URL { Constants.baseURL.appending(path: "path/{param}") }
+}
+```
+
+## UI Development
+- Break up complex SwiftUI views into smaller, reusable view functions and properties to avoid "The compiler is unable to type-check this expression in reasonable time" error. note here's an example snippet not a scheme, use `.onAppear`, `.onDisappear`, etc. modifiers if needed: 
+```swift
+struct ViewName: View {
+    var body: some View {
+        //view code here
+        content
+            .task {
+                // task code here
+            }
+            .onAppear {
+                // on appear code here
+            }
+            .onDisappear {
+                // on disappear code here
+            }
+    }
+
+    private var content: some View {
+        // content code here
+        navbar
+    }
+
+    private var navbar: some View {
+        // navbar code here
+    }
+}
+```
+- Use view functions for `ForEach` `List` and etc. :
+```swift
+struct ViewName: View {
+    var body: some View {
+        // view code here
+        content
+    }
+
+    private var content: some View {
+        // content code here
+        ForEach(vm.metrics, content: metricView) // Ensure Metric conforms to Identifiable
+    }
+
+    private func metricView(_ metric: Metric) -> some View {
+        // metric view code here
+    }
+}
+```
+- while creating ui builder functions, use ui builder property wrappers like `@ViewBuilder`, `@ChartContentBuilder` if needed:
+Good Example:
+```swift
+@ChartContentBuilder
+private func targetBar(for school: ProfessorAverageTimeDTO) -> some ChartContent {
+    let factHours = Double(school.fact.hoursOnly) ?? 0
+    let planHours = Double(school.plan.hoursOnly) ?? 0
+
+    BarMark(
+        x: .value("School", school.title),
+        y: .value("Hours", planHours - factHours),
+        stacking: .unstacked
+    )
+}
+```
+Bad Example:
+```swift
+private func targetBar(for school: ProfessorAverageTimeDTO) -> some ChartContent {
+    let factHours = Double(school.fact.hoursOnly) ?? 0
+    let planHours = Double(school.plan.hoursOnly) ?? 0
+
+    return BarMark(
+        x: .value("School", school.title),
+        y: .value("Hours", planHours - factHours),
+        stacking: .unstacked
+    )
+}
+```
+- order of UI views is as follows - required properties, initializers, stored properties, simple computed properties, body, view computed properties, view functions, simple functions:
+```swift
+struct ViewName: View {
+    // required properties
+    let requiredProperty: String
+
+    // initializers
+    init(requiredProperty: String) {
+        self.requiredProperty = requiredProperty
+    }
+
+    // stored properties
+    @State private var isLoading = true
+
+    // simple computed properties
+    private var description: String {
+        isLoading ? "Loading..." : "Description"
+    }
+
+    var body: some View {
+        // view code here
+        content
+    }
+
+    // view computed properties
+    private var content: some View {
+        // content code here
+        ForEach(vm.metrics, content: metricView) // Ensure Metric conforms to Identifiable
+    }
+
+    // view functions
+    private func metricView(_ metric: Metric) -> some View {
+        // metric view code here
+    }
+
+    // simple functions
+    private func toggleLoader() async {
+        isLoading.toggle()
+    }
+}
+```
+
+## Data Modelling
+- As strings have infinite possibilities, in order to avoid string dependency, prioritize using Enums wherever possible such as, selections and etc. 
+Good example:  
+```swift
+enum Metric: String, Codable, Identifiable {
+</ADDITIONAL_METADATA>
+        // metric view code here
+    }
+}
+```
+
+## Data Modelling
+- As strings have infinite possibilities, in order to avoid string dependency, prioritize using Enums wherever possible such as, selections and etc. 
+Good example:  
+```swift
+enum Metric: String, Codable, Identifiable {
+    case all
+    case students
+    case gender
+    case attendance 
+
+    var id: String { self.rawValue }
+}
+
+@State selectedMetric: Metric = .all
+```
+Bad example:
+```swift
+@State selectedMetric: String = "all"
+```
+
+## Performance & Architecture
+- Keep SwiftUI views focused on UI concerns only
+- Extract business logic into ViewModels
+- Use LazyVStack/LazyHStack for performance-critical lists
+- Avoid excessive view updates in SwiftUI
+- Use Swift Concurrency (async/await) instead of completion handlers
+- In order to request api data before view appears, use .task modifier:
+```swift
+.task {
+    await viewModel.getStudentCountChartData()
+}
+```
+
+## Best Practices
+- Use proper error handling with do-catch blocks
+- Implement proper memory management techniques
+- Follow Apple's Human Interface Guidelines
+- When creating helper functions, try to extend that particular type:
+Bad example:
+``` swift
+private func hoursOnlyFromTimeString(_ timeString: String) -> String {
+    let components = timeString.components(separatedBy: ":")
+    guard components.count >= 1 else { return "0" }
+    return components[0]
+}
+
+// Usage
+.annotation(position: .overlay, alignment: .top) {
+    Text(hoursOnlyFromTimeString(school.fact))
+        .foregroundStyle(Color.white)
+        .customFont(.medium, size: 12)
+}
+```
+Good example:
+``` swift
+extension String {
+    var hoursOnly: String {
+        let components = self.components(separatedBy: ":")
+        guard components.count >= 1 else { return "0" }
+        return components[0]
+    }
+}
+
+// Usage
+.annotation(position: .overlay, alignment: .top) {
+    Text(school.fact.hoursOnly)
+        .foregroundStyle(Color.white)
+        .customFont(.medium, size: 12)
+}
+```
+- When writing extensions, if passing an argument isn't required, create a computed property, otherwise create a function:
+Bad example:
+```swift
+extension String {
+    func hoursOnly() -> String {
+        let components = self.components(separatedBy: ":")
+        guard components.count >= 1 else { return "0" }
+        return components[0]
+    }
+}
+
+// Usage
+.annotation(position: .overlay, alignment: .top) {
+    Text(school.fact.hoursOnly())
+        .foregroundStyle(Color.white)
+        .customFont(.medium, size: 12)
+}
+```
+Good example:
+```swift
+extension String {
+    var hoursOnly: String {
+        let components = self.components(separatedBy: ":")
+        guard components.count >= 1 else { return "0" }
+        return components[0]
+    }
+}
+
+// Usage
+.annotation(position: .overlay, alignment: .top) {
+    Text(school.fact.hoursOnly)
+        .foregroundStyle(Color.white)
+        .customFont(.medium, size: 12)
+}
+```
+
+## Security
+- Avoid hardcoding sensitive information
+
+## Docs
+- Swift documentation: https://developer.apple.com/documentation/swift
+- SwiftUI documentation: https://developer.apple.com/documentation/swiftui
+- Charts documentation: https://developer.apple.com/documentation/charts
+- Alamofire documentation: https://github.com/Alamofire/Alamofire
+
+## Version Control
+- Use Git for version control
+- When asked to "commit changes", see the changes made and commit them. 
+Depending on commit history, follow this pattern for a commit message: "[feature] commit message"
+
+## Rules for Python
+- Use python3 and pip3 on terminal

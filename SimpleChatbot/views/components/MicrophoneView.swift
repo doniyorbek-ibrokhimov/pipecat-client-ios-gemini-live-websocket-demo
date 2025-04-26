@@ -38,7 +38,3 @@ struct MicrophoneView: View {
         }
     }
 }
-
-#Preview {
-    MicrophoneView(audioLevel: 1, isMuted: false)
-}
