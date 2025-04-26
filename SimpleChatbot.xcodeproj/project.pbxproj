@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,7 +24,8 @@
 		90ABB9A32C74E1CE000D9CC7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ABB9A22C74E1CE000D9CC7 /* SettingsView.swift */; };
 		90ABB9A62C74EA8A000D9CC7 /* SettingsPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ABB9A52C74EA8A000D9CC7 /* SettingsPreference.swift */; };
 		90ABB9A82C74EAB1000D9CC7 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ABB9A72C74EAB1000D9CC7 /* SettingsManager.swift */; };
-		90CED5EB2D38318100B03BC9 /* PipecatClientIOSGeminiLiveWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 90CED5EA2D38318100B03BC9 /* PipecatClientIOSGeminiLiveWebSocket */; };
+		CC5BAC632DBC58DE00E9CF71 /* PipecatClientIOS in Frameworks */ = {isa = PBXBuildFile; productRef = CC5BAC622DBC58DE00E9CF71 /* PipecatClientIOS */; };
+		CC5BAC662DBC591C00E9CF71 /* PipecatClientIOSGeminiLiveWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = CC5BAC652DBC591C00E9CF71 /* PipecatClientIOSGeminiLiveWebSocket */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +74,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90CED5EB2D38318100B03BC9 /* PipecatClientIOSGeminiLiveWebSocket in Frameworks */,
+				CC5BAC632DBC58DE00E9CF71 /* PipecatClientIOS in Frameworks */,
+				CC5BAC662DBC591C00E9CF71 /* PipecatClientIOSGeminiLiveWebSocket in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +228,8 @@
 			);
 			name = SimpleChatbot;
 			packageProductDependencies = (
-				90CED5EA2D38318100B03BC9 /* PipecatClientIOSGeminiLiveWebSocket */,
+				CC5BAC622DBC58DE00E9CF71 /* PipecatClientIOS */,
+				CC5BAC652DBC591C00E9CF71 /* PipecatClientIOSGeminiLiveWebSocket */,
 			);
 			productName = SimpleChatbot;
 			productReference = 90031FA32C616EE700408370 /* SimpleChatbot.app */;
@@ -301,7 +304,8 @@
 			);
 			mainGroup = 90031F9A2C616EE700408370;
 			packageReferences = (
-				90CED5E92D38318100B03BC9 /* XCRemoteSwiftPackageReference "pipecat-client-ios-gemini-live-websocket" */,
+				CC5BAC612DBC58DE00E9CF71 /* XCLocalSwiftPackageReference "pipecat-client-ios" */,
+				CC5BAC642DBC591C00E9CF71 /* XCLocalSwiftPackageReference "pipecat-client-ios-gemini-live-websocket" */,
 			);
 			productRefGroup = 90031FA42C616EE700408370 /* Products */;
 			projectDirPath = "";
@@ -693,21 +697,24 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		90CED5E92D38318100B03BC9 /* XCRemoteSwiftPackageReference "pipecat-client-ios-gemini-live-websocket" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pipecat-ai/pipecat-client-ios-gemini-live-websocket";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.5;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		CC5BAC612DBC58DE00E9CF71 /* XCLocalSwiftPackageReference "pipecat-client-ios" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "pipecat-client-ios";
 		};
-/* End XCRemoteSwiftPackageReference section */
+		CC5BAC642DBC591C00E9CF71 /* XCLocalSwiftPackageReference "pipecat-client-ios-gemini-live-websocket" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "pipecat-client-ios-gemini-live-websocket";
+		};
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		90CED5EA2D38318100B03BC9 /* PipecatClientIOSGeminiLiveWebSocket */ = {
+		CC5BAC622DBC58DE00E9CF71 /* PipecatClientIOS */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 90CED5E92D38318100B03BC9 /* XCRemoteSwiftPackageReference "pipecat-client-ios-gemini-live-websocket" */;
+			productName = PipecatClientIOS;
+		};
+		CC5BAC652DBC591C00E9CF71 /* PipecatClientIOSGeminiLiveWebSocket */ = {
+			isa = XCSwiftPackageProductDependency;
 			productName = PipecatClientIOSGeminiLiveWebSocket;
 		};
 /* End XCSwiftPackageProductDependency section */
