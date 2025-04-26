@@ -36,7 +36,3 @@ struct PreJoinView: View {
         .toast(message: model.toastMessage, isShowing: model.showToast)
     }
 }
-
-#Preview {
-    PreJoinView().environmentObject(MockCallContainerModel() as CallContainerModel)
-}

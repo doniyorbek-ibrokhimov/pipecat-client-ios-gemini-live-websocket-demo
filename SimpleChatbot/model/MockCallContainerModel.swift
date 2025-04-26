@@ -3,9 +3,6 @@ import PipecatClientIOS
 
 class MockCallContainerModel: CallContainerModel {
 
-    override init() {
-    }
-
     override func connect(geminiAPIKey: String) {
         print("connect")
     }

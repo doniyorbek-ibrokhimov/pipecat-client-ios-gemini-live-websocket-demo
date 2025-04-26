@@ -1,0 +1,36 @@
+//
+//  CameraPreview.swift
+//  VisionFit
+//
+//  Created by Doniyorbek Ibrokhimov on 20/12/24.
+//
+
+
+
+import SwiftUI
+import AVFoundation
+
+struct CameraPreview: UIViewRepresentable {
+    class VideoPreviewView: UIView {
+        override class var layerClass: AnyClass {
+            return AVCaptureVideoPreviewLayer.self
+        }
+        
+        var videoPreviewLayer: AVCaptureVideoPreviewLayer {
+            return layer as! AVCaptureVideoPreviewLayer
+        }
+    }
+    
+    let session: AVCaptureSession
+    
+    func makeUIView(context: Context) -> VideoPreviewView {
+        let view = VideoPreviewView()
+        view.videoPreviewLayer.session = session
+        view.videoPreviewLayer.videoGravity = .resizeAspectFill
+        return view
+    }
+    
+    func updateUIView(_ uiView: VideoPreviewView, context: Context) {
+        // Nothing to update here
+    }
+}

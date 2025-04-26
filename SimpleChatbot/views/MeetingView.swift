@@ -4,12 +4,23 @@ struct MeetingView: View {
     
     @State private var showingSettings = false
     @EnvironmentObject private var model: CallContainerModel
+    @EnvironmentObject private var cameraVM: CameraViewModel
+    
     
     var body: some View {
         VStack {           
             // Main Panel
             VStack {
                 VStack {
+                    CameraPreview(session: cameraVM.captureSession)
+                        .onAppear {
+                            cameraVM.startSession()
+                        }
+                        .onDisappear {
+                            cameraVM.stopSession()
+                        }
+                        .frame(width: 200, height: 200)
+                    
                     WaveformView(audioLevel: model.remoteAudioLevel, isBotReady: model.isBotReady, voiceClientStatus: model.voiceClientStatus)
                 }
                 .frame(maxHeight: .infinity)

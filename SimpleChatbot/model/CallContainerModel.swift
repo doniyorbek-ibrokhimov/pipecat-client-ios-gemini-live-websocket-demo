@@ -31,7 +31,10 @@ class CallContainerModel: ObservableObject {
     }
     @Published var availableMics: [MediaDeviceInfo] = []
     
-    init() {
+    private var cameraVM: CameraViewModel
+    
+    init(cameraVM: CameraViewModel) {
+        self.cameraVM = cameraVM
         // Changing the log level
         PipecatClientIOS.setLogLevel(.warn)
     }
@@ -60,7 +63,7 @@ class CallContainerModel: ObservableObject {
         
         
         self.rtviClientIOS = RTVIClient.init(
-            transport: GeminiLiveWebSocketTransport.init(options: rtviClientOptions),
+            transport: GeminiLiveWebSocketTransport.init(options: rtviClientOptions, videoRecorder: cameraVM),
             options: rtviClientOptions
         )
         self.rtviClientIOS?.delegate = self
