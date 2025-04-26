@@ -47,7 +47,7 @@ class CallContainerModel: ObservableObject {
         let currentSettings = SettingsManager.getSettings()
         let rtviClientOptions = RTVIClientOptions.init(
             enableMic: currentSettings.enableMic,
-            enableCam: false,
+            enableCam: true,
             params: .init(config: [
                 .init(
                     service: "llm",
