@@ -30,6 +30,7 @@
 		CC1D61912DBD3D8700A82157 /* PipecatClientIOSGeminiLiveWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = CC1D61902DBD3D8700A82157 /* PipecatClientIOSGeminiLiveWebSocket */; };
 		CC5BAC632DBC58DE00E9CF71 /* PipecatClientIOS in Frameworks */ = {isa = PBXBuildFile; productRef = CC5BAC622DBC58DE00E9CF71 /* PipecatClientIOS */; };
 		CC5BAC662DBC591C00E9CF71 /* PipecatClientIOSGeminiLiveWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = CC5BAC652DBC591C00E9CF71 /* PipecatClientIOSGeminiLiveWebSocket */; };
+		CC667ACB2DBDBB7900E83CAD /* ModelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC667ACA2DBDBB7900E83CAD /* ModelConfig.swift */; };
 		CCCDF8912DBDA01E00AAF2C3 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCDF8902DBDA01E00AAF2C3 /* CameraViewModel.swift */; };
 		CCCDF8932DBDA1EB00AAF2C3 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCDF8922DBDA1EB00AAF2C3 /* CameraPreview.swift */; };
 /* End PBXBuildFile section */
@@ -73,6 +74,7 @@
 		90ABB9A22C74E1CE000D9CC7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		90ABB9A52C74EA8A000D9CC7 /* SettingsPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPreference.swift; sourceTree = "<group>"; };
 		90ABB9A72C74EAB1000D9CC7 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		CC667ACA2DBDBB7900E83CAD /* ModelConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelConfig.swift; sourceTree = "<group>"; };
 		CCCDF8902DBDA01E00AAF2C3 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		CCCDF8922DBDA1EB00AAF2C3 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -200,6 +202,7 @@
 			children = (
 				90ABB9992C73A6A9000D9CC7 /* MockCallContainerModel.swift */,
 				90ABB99C2C73C2D1000D9CC7 /* CallContainerModel.swift */,
+				CC667ACA2DBDBB7900E83CAD /* ModelConfig.swift */,
 				CCCDF8902DBDA01E00AAF2C3 /* CameraViewModel.swift */,
 			);
 			path = model;
@@ -374,6 +377,7 @@
 				90031FA92C616EE700408370 /* PreJoinView.swift in Sources */,
 				90ABB9982C738356000D9CC7 /* CustomColors.swift in Sources */,
 				90ABB98E2C735ED6000D9CC7 /* MeetingView.swift in Sources */,
+				CC667ACB2DBDBB7900E83CAD /* ModelConfig.swift in Sources */,
 				90ABB9A32C74E1CE000D9CC7 /* SettingsView.swift in Sources */,
 				90ABB9932C73820D000D9CC7 /* MicrophoneView.swift in Sources */,
 				90ABB9A82C74EAB1000D9CC7 /* SettingsManager.swift in Sources */,

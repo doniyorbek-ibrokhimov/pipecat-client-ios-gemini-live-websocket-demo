@@ -51,19 +51,12 @@ class CallContainerModel: ObservableObject {
         let rtviClientOptions = RTVIClientOptions.init(
             enableMic: currentSettings.enableMic,
             enableCam: true, //currentSettings.enableMic,
-            params: .init(config: [
-                .init(
-                    service: "llm",
-                    options: [
-                        .init(name: "api_key", value: .string(geminiAPIKey))
-                    ]
-                )
-            ])
+            params: .init(config: [])
         )
         
         
         self.rtviClientIOS = RTVIClient.init(
-            transport: GeminiLiveWebSocketTransport.init(options: rtviClientOptions, videoRecorder: cameraVM),
+            transport: GeminiLiveWebSocketTransport.init(options: rtviClientOptions, videoRecorder: cameraVM, modelConfig: modelConfig, apiKey: geminiAPIKey),
             options: rtviClientOptions
         )
         self.rtviClientIOS?.delegate = self
@@ -124,6 +117,11 @@ class CallContainerModel: ObservableObject {
         self.selectedMic = mic
         self.rtviClientIOS?.updateMic(micId: mic, completion: nil)
     }
+    
+    @Published var modelConfig: Setup = .init(model: "models/gemini-2.0-flash-live-001",
+                                              generationConfig: .init(responseModalities: [.audio],
+                                                                      speechConfig: .init(voiceConfig: .init(prebuiltVoiceConfig: .init(voiceName: "Aoede")), languageCode: "en-US")),
+                                              systemInstruction: .init(parts: [.init(thought: false, text: "Continuously describe what you see")], role: "model"))
 }
 
 extension CallContainerModel:RTVIClientDelegate {
